@@ -1,4 +1,4 @@
-Project Name Blog Site CRUD
+Project Name: Blog Site CRUD
 
 Description
     This project is Blog management application and demonstration of CRUD operation and nextjs capabilitis for fullstack development 
@@ -81,9 +81,9 @@ yarn install
 
 environment variables
 
-    DATABASE_URL="postgresql://postgres.wryxxktpaobmuqppddur:aeWW@kZL0ysH5I4z@aws-0-ap-south-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+    DATABASE_URL=
 
-    DIRECT_URL="postgresql://postgres.wryxxktpaobmuqppddur:aeWW@kZL0ysH5I4z@aws-0-ap-south-1.pooler.supabase.com:5432/postgres"
+    DIRECT_URL=
 
     NODE_ENV="development"
 
