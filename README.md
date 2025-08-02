@@ -7,8 +7,6 @@ Table of Contents
     Getting Started
     Features
     Technology Stack
-    Installation
-    Usage
 
 
 
@@ -17,8 +15,13 @@ To get started with this project, follow these steps:
 
 Clone the repository: 
 ```
-[git clone https://github.com/your-username/your-repo-name.git](https://github.com/NavinLamsal/Blog-CRUD-Application)
+git clone https://github.com/NavinLamsal/Blog-CRUD-Application
 ```
+
+To install the project, follow these steps:
+
+    Install Node.js and npm or yarn
+
 
 Install dependencies: 
 ```
@@ -28,6 +31,18 @@ or
 ```
 yarn install
 ```
+
+environment variables
+
+    DATABASE_URL=
+
+    DIRECT_URL=
+
+    NODE_ENV="development"
+
+    NEXT_PUBLIC_HOST_URL="http://localhost:3000"
+
+
 Start the development server: 
 ```
 npm run dev 
@@ -36,6 +51,11 @@ or
 ```
 yarn dev
 ```
+
+
+Open the app in your browser:
+
+    http://localhost:3000
 
 Features
 
@@ -55,7 +75,6 @@ Blog Post Management
         Supports add/update/delete.
 
 
-
 Technology Stack
 
         Frontend: React, Next.js
@@ -64,43 +83,5 @@ Technology Stack
         Authentication: jwt cookie based
 
 
-Installation
 
-To install the project, follow these steps:
 
-    Install Node.js and npm or yarn
-
-    Install dependencies: 
-```
-npm install 
-```
-or 
-```
-yarn install
-```
-
-environment variables
-
-    DATABASE_URL=
-
-    DIRECT_URL=
-
-    NODE_ENV="development"
-
-    NEXT_PUBLIC_HOST_URL="http://localhost:3000"
-
-Usage
-
-    To use the project, follow these steps:
-
-    Start the development server: 
-```
-npm run dev 
-```
-or 
-```
-yarn dev
-```
-Open the app in your browser:
-
-    http://localhost:3000
