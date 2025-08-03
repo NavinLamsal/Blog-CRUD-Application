@@ -1,9 +1,9 @@
 "use client"
 
-import React, { ReactNode, useEffect } from "react"
+import React, { ReactNode, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/hooks/useAuth"
-
+import { getCookie } from "cookies-next/client"
+import BlogCardSkeleton from "../blogSkeleton"
 
 interface ProtectedLayoutProps {
   children: ReactNode
@@ -11,32 +11,32 @@ interface ProtectedLayoutProps {
 
 export default function ProtectedLayout({ children }: ProtectedLayoutProps) {
   const router = useRouter()
-
-  const { user, loading, isAuthenticated } = useAuth()
- 
+  const [loading, setLoading] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    if (!isAuthenticated && !loading) {
-      router.replace("/login") // redirect if not logged in
+    const token = getCookie("token")
+
+    if (!token) {
+      router.replace("/login")
+    } else {
+      setIsAuthenticated(true)
     }
-  }, [user, loading])
+
+    setLoading(false)
+  }, [router])
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p>Loading...</p>
-      </div>
+      <>
+      {BlogCardSkeleton({ count: 10 })}
+      </>
+
     )
   }
-
-  // If user is authenticated, render the children pages/components
-  if (isAuthenticated) {
-    return <>
-     
-      {children}
-    </>
+  if (!isAuthenticated) {
+    return null // Don't show anything while redirecting
   }
 
-  // Optional: return null while redirecting
-  return null
+  return <>{children}</>
 }

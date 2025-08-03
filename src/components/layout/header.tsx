@@ -6,8 +6,10 @@ import Link from "next/link"
 import { BookOpenIcon, MenuIcon, XIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/hooks/useAuth"
+import { usePathname } from "next/navigation"
 
 const Header = () => {
+  const pathname = usePathname()
   const { user, logout, isAuthenticated } = useAuth(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -33,8 +35,8 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-6">
           {isAuthenticated && user ? (
             <>
-              <Link href="/dashboard" className="hover:text-gray-900 font-medium">Dashboard</Link>
-              <Link href="/create" className="hover:text-gray-900 font-medium">Add Post</Link>
+              <Link href="/dashboard" className={` hover:text-gray-900 font-medium ${pathname === "/dashboard" && "text-red-500"} `}>Dashboard</Link>
+              <Link href="/create" className={` hover:text-gray-900 font-medium ${pathname === "/create" && "text-red-500"} `}>Add Post</Link>
               <div className="flex flex-col text-right">
                 <span className="font-semibold">{user.username}</span>
                 <span className="text-sm text-gray-500">{user.email}</span>
@@ -54,8 +56,8 @@ const Header = () => {
         <div className="md:hidden border-t px-4 pb-4">
           {isAuthenticated && user ? (
             <>
-              <Link href="/dashboard" className="block py-2 font-medium hover:text-gray-900">Dashboard</Link>
-              <Link href="/create" className="block py-2 font-medium hover:text-gray-900">Add Post</Link>
+              <Link href="/dashboard" className={` block py-2 font-medium hover:text-gray-900 ${pathname === "/dashboard" && "text-red-500"} `}>Dashboard</Link>
+              <Link href="/create" className={` block py-2 font-medium hover:text-gray-900 ${pathname === "/create" && "text-red-500"} `}>Add Post</Link>
               <div className="py-2">
                 <span className="block font-semibold">{user.username}</span>
                 <span className="block text-sm text-gray-500">{user.email}</span>

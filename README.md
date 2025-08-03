@@ -64,7 +64,7 @@ Authentication
     1. login and register pages.
     2. On successful login, store JWT token in cookie.
     3. useAuth hook: Handles login, logout,  isAuthenticated, and user state,
-    4. Redirects unauthorized users and authorized user with the use of useAuth hook and Authlayout an Protected Layout
+    4. Redirects unauthorized users and authorized user with the help of Authlayout an ProtectedLayout
 
 Blog Post Management
 

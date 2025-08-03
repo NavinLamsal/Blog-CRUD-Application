@@ -3,6 +3,7 @@
 import { usePosts } from "@/hooks/usePost"
 import { useEffect, useRef, useCallback } from "react"
 import BlogCard from "../card/blogCard"
+import BlogCardSkeleton from "../blogSkeleton"
 
 
 
@@ -31,6 +32,7 @@ export default function AllBlogsList() {
   }, [])
 
   return (
+    <>
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-3">
       {posts.map((post, index) => {
         const isLast = index === posts.length - 1
@@ -40,7 +42,9 @@ export default function AllBlogsList() {
    
         )
       })}
-      {loading && <p className="col-span-full text-center">Loading...</p>}
     </div>
+      {loading && BlogCardSkeleton({ count: 10 })}
+    
+    </>
   )
 }
