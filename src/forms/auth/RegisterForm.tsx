@@ -17,6 +17,7 @@ import { registerUser } from "@/actions/auth"
 import { useAuth } from "@/hooks/useAuth"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export function RegisterForm({
     className,
@@ -192,9 +193,9 @@ export function RegisterForm({
                         </div>
                         <div className="mt-4 text-center text-sm">
                             Already have an account?{" "}
-                            <a href="#" className="underline underline-offset-4">
+                            <Link href="/login" className="underline underline-offset-4">
                                 Log in
-                            </a>
+                            </Link>
                         </div>
                     </form>
                 </CardContent>

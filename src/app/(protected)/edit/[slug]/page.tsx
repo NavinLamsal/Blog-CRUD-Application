@@ -1,5 +1,6 @@
 "use client"
 
+import BlogCardSkeleton from '@/components/blogSkeleton'
 import ProtectedLayout from '@/components/layout/ProtectedLayout'
 import BlogPostForm from '@/forms/blog/BlogForm'
 import { useParams } from 'next/navigation'
@@ -47,7 +48,16 @@ const EditPage = () => {
     fetchPost()
   }, [slug])
 
-  if (loading) return <p className='text-center'>Loading post data...</p>
+
+  if (loading) {
+    return (
+      <>
+      {BlogCardSkeleton({ count: 10 })}
+      </>
+
+    )
+  }
+
   if (error) return <p className="text-red-600">Error: {error}</p>
   if (!post) return <p>Post not found</p>
 

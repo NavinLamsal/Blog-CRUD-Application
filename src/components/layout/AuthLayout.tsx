@@ -1,8 +1,9 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/hooks/useAuth"
+import { getCookie } from "cookies-next/client"
+import BlogCardSkeleton from "../blogSkeleton"
 
 interface AuthLayoutProps {
   children: React.ReactNode
@@ -10,35 +11,29 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   const router = useRouter()
+  const [loading, setLoading] = useState(true)
+  const [shouldRender, setShouldRender] = useState(false)
 
-
-  const { user, loading, isAuthenticated } = useAuth()
-   
-  
-    useEffect(() => {
-      if (isAuthenticated && !loading) {
-        router.replace("/dashboard") 
-      }
-    }, [user, loading])
-  
-    if (loading) {
-      return (
-        <div className="flex items-center justify-center min-h-screen">
-          <p>Loading...</p>
-        </div>
-      )
+  useEffect(() => {
+    const token = getCookie("token")
+    if (token) {
+      router.replace("/dashboard")
+    } else {
+      setShouldRender(true)
     }
+    setLoading(false)
+  }, [router])
 
-    // If user is authenticated, render the children pages/components
-  if (!isAuthenticated) {
-    return <>
-     
-      {children}
-    </>
+  if (loading) {
+    return (
+      <>
+      {BlogCardSkeleton({ count: 10 })}
+      </>
+
+    )
   }
 
-  // Optional: return null while redirecting
-  return null
+  return shouldRender ? <>{children}</> : null
 }
 
 export default AuthLayout
